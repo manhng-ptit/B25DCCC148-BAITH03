@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* Dark mode điều khiển bằng class "dark" trên <html> (do ThemeContext thêm/bớt) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Bảng màu theo biến CSS: đổi theme chỉ cần đổi giá trị biến */
+:root {
+  --paper: #fff6e5;
+  --ink: #141414;
+  --card: #ffffff;
+  --accent: #ff5c39;
+  --sun: #ffd43b;
+  --sky: #8fd3ff;
+  --mint: #9be8b0;
+  --muted: #5c564b;
+}
+
+.dark {
+  --paper: #15130f;
+  --ink: #f5efe2;
+  --card: #211e19;
+  --accent: #ff7a5c;
+  --sun: #e8bd1f;
+  --sky: #5aaee0;
+  --mint: #55c279;
+  --muted: #b3ab9b;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-card: var(--card);
+  --color-accent: var(--accent);
+  --color-sun: var(--sun);
+  --color-sky: var(--sky);
+  --color-mint: var(--mint);
+  --color-muted: var(--muted);
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    background-image: radial-gradient(color-mix(in srgb, var(--ink) 14%, transparent) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+}
+
+@layer components {
+  .brut-card {
+    @apply border-2 border-ink bg-card shadow-[5px_5px_0_0_var(--ink)];
+  }
+  .btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-1.5 border-2 border-ink px-4 py-2 text-sm font-bold text-ink shadow-[3px_3px_0_0_var(--ink)] transition-all;
+  }
+  .btn:hover {
+    @apply translate-x-[2px] translate-y-[2px] shadow-[1px_1px_0_0_var(--ink)];
+  }
+  .btn:active {
+    @apply translate-x-[3px] translate-y-[3px] shadow-none;
+  }
+  .btn-accent {
+    @apply bg-accent text-[#141414];
+  }
+  .btn-sun {
+    @apply bg-sun text-[#141414];
+  }
+  .btn-plain {
+    @apply bg-card;
+  }
+  .field {
+    @apply w-full border-2 border-ink bg-card px-3 py-2.5 font-medium text-ink outline-none placeholder:text-muted focus:shadow-[4px_4px_0_0_var(--accent)];
+  }
+  .tag {
+    @apply inline-block border-2 border-ink bg-sky px-2 py-0.5 font-mono text-[11px] font-bold tracking-wider text-[#141414] uppercase;
+  }
+}
