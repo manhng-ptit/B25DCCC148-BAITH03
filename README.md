@@ -6,8 +6,8 @@
 
 ```bash
 npm install
-npm run dev      # chạy môi trường dev
-npm run build    # kiểm tra kiểu TypeScript và build production
+npm run dev
+npm run build
 ```
 
 Đăng nhập giả lập: username bất kỳ (không rỗng), password `123456`.
